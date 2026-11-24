@@ -1,0 +1,106 @@
+/* Product cards */
+#order-other-products .row.row-cards > [class*="col-"] {
+    display: flex;
+}
+
+#order-other-products .card.card-md {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+}
+
+#order-other-products .card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    text-align: center;
+}
+
+/* Product title */
+.product-title {
+    margin-bottom: 1rem;
+}
+
+/* Category description */
+.category-description {
+    margin: 1rem 0 1.5rem;
+    line-height: 1.6;
+}
+
+.category-description img {
+    width: 17px;
+    height: 17px;
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.category-description p {
+    margin-bottom: 0.75rem;
+}
+
+.category-description p:last-child {
+    margin-bottom: 0;
+}
+
+.category-section {
+    background-color: var(--tblr-bg-surface-secondary);
+    border: 1px solid var(--tblr-border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+/* Product description */
+.product-description img {
+    width: 17px;
+    height: 17px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+[data-bs-theme="dark"] .category-description img,
+[data-bs-theme="dark"] .product-description img {
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
+}
+
+/* Product description */
+.product-description {
+    text-align: left;
+    flex: 1 0 auto;
+    margin: 0.5rem 0 1rem;
+    width: 100%;
+}
+
+.product-description p {
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.product-description img {
+    width: 17px;
+    height: 17px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+/* Description lists */
+.product-description ul,
+.product-description ol {
+    padding-left: 1.5rem;
+}
+
+/* Price */
+#order-other-products .card-body > .h2 {
+    margin-top: auto !important;
+    margin-bottom: 1rem !important;
+}
+
+/* Button */
+#order-other-products .card-body > .text-center:last-child {
+    margin-top: auto;
+    width: 100%;
+}
