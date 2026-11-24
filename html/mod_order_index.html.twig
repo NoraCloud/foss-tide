@@ -38,9 +38,13 @@
 
     <div id="order-other-products" class="w-100" style="display: block;">
         {% for i, category in guest.product_category_get_list.list|filter(c => c.products|filter(p => p.type != 'domain')|length > 0) %}
-        <div class="mb-4">
+        <div class="category-section mb-4">
             <h2>{{ category.title }}</h2>
-            <div>{{ category.description|default('', true)|markdown_to_html }}</div>
+            {% if category.description is not empty %}
+            <div class="category-description">
+                {{ category.description|default('', true)|markdown_to_html }}
+            </div>
+            {% endif %}
             <div class="row row-cards">
                    {% for i, product in category.products|filter(p => p.type != 'domain')|sort((a, b) => a.priority <=> b.priority) %}
                    <div class="{% if loop.length == 1 %}col-12{% elseif loop.length == 2 %}col-12 col-md-6{% else %}col-12 col-md-6 col-lg-4{% endif %}">
@@ -97,14 +101,17 @@
                             </div>
                             {% endif %}
                             {% if settings.show_product_type_names|default('1') %}
-                            <div class="text-uppercase text-muted font-weight-medium mb-4">{{ product.type }}</div>
+                            <div class="text-uppercase text-muted font-weight-medium mb-2">{{ product.type }}</div>
                             {% endif %}
-                            <h3>{{ product.title }}</h3>
+                            <h3 class="product-title">{{ product.title }}</h3>
+                            {% if product.description is not empty %}
+                            <div class="product-description">{{ product.description|markdown_to_html }}</div>
+                            {% endif %}
                             {% if product.type != 'domain' and product.price_starting_from is defined and product.price_starting_from is not empty %}
                               <div class="h2 my-3">{{ (product.price_starting_from * cart_currency.conversion_rate)|format_currency(cart_currency.code) }}</div>
                             {% endif %}
-                            <div class="text-center mt-4">
-                               <a href="{{ ('/order/' ~ product.slug) | url }}" class="btn {% if product.type == 'domain' %}btn-green{% elseif product.type == 'hosting' %}btn-orange{% elseif product.type == 'downloadable' %}btn-indigo{% elseif product.type == 'license' %}btn-pink{% elseif product.type == 'dns' %}btn-azure{% elseif product.type == 'ssl' %}btn-purple{% else %}btn-cyan{% endif %} w-100">{{ 'Choose'|trans }}</a>
+                            <div class="text-center mt-auto pt-3">
+                                <a href="{{ ('/order/' ~ product.slug) | url }}" class="btn {% if product.type == 'domain' %}btn-green{% elseif product.type == 'hosting' %}btn-orange{% elseif product.type == 'downloadable' %}btn-indigo{% elseif product.type == 'license' %}btn-pink{% elseif product.type == 'dns' %}btn-azure{% elseif product.type == 'ssl' %}btn-purple{% else %}btn-cyan{% endif %} w-100"> {{ 'Choose'|trans }} </a>
                             </div>
                          </div>
                       </div>
